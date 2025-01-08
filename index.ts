@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import usersRouter from "./routes/usersRouter";
+import postsRouter from "./routes/postsRouter";
 
 const prisma = new PrismaClient();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 const { PORT = 3000 } = process.env;
 
 app.use("/users", usersRouter);
+app.use("/posts", postsRouter);
 
 // async function main() {
 //   // ... you will write your Prisma Client queries here
