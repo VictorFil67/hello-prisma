@@ -1,3 +1,4 @@
+import ctrlWrapper from "../decorators/ctrlWrapper";
 import { getUsers } from "../services/usersServices";
 
 const usersList = async (req: any, res: any) => {
@@ -6,5 +7,5 @@ const usersList = async (req: any, res: any) => {
 };
 
 export default {
-  usersList,
+  usersList: ctrlWrapper(usersList),
 };
