@@ -17,3 +17,10 @@ export async function addUser(data: {
 }) {
   return await prisma.user.create(data);
 }
+
+export async function update(id: number, data: Boolean) {
+  return await prisma.user.update({
+    where: { id },
+    data,
+  });
+}
