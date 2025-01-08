@@ -1,5 +1,5 @@
 import { DefaultArgs } from "@prisma/client/runtime/library";
-import { User } from "./../types";
+// import { User } from "./../types";
 import { Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();

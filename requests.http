@@ -6,9 +6,9 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-     "email": "user1@cyclelove.cc ",
-    "name":"User1",
-    "title":"qwertyUser1",
-    "bio":"fly1",
-    "content":"Lorem20"
+     "email": "user4@cyclelove.cc ",
+    "name":"User4",
+    "title":"qwertyUser4",
+    "bio":"fly4",
+    "content":"Lorem4"
 }

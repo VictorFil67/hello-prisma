@@ -74,27 +74,27 @@ app.use("/users", usersRouter);
 //   }
 // });
 
-app.post("/users", async (req, res) => {
-  const { email, name, title, bio, content = "" } = req.body;
-  try {
-    const result = await prisma.user.create({
-      data: {
-        email,
-        name,
-        posts: {
-          create: { title, content },
-        },
-        profile: {
-          create: { bio },
-        },
-      },
-    });
-    res.status(201).json(result);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error creating user" });
-  }
-});
+// app.post("/users", async (req, res) => {
+//   const { email, name, title, bio, content = "" } = req.body;
+//   try {
+//     const result = await prisma.user.create({
+//       data: {
+//         email,
+//         name,
+//         posts: {
+//           create: { title, content },
+//         },
+//         profile: {
+//           create: { bio },
+//         },
+//       },
+//     });
+//     res.status(201).json(result);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Error creating user" });
+//   }
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);

@@ -3,8 +3,9 @@ import usersControllers from "../controllers/usersControllers";
 
 const usersRouter = express.Router();
 
-const { usersList } = usersControllers;
+const { usersList, createUser } = usersControllers;
 
 usersRouter.get("/", usersList);
+usersRouter.post("/", createUser);
 
 export default usersRouter;
