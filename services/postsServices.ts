@@ -8,3 +8,9 @@ export async function update(id: number, data: any) {
     data,
   });
 }
+
+export async function deleteOnePost(id: number) {
+  return await prisma.post.delete({
+    where: { id },
+  });
+}
