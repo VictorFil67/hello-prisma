@@ -27,10 +27,17 @@ const updatePost: Controller = async (req: Request, res: Response) => {
 const removePost = async (req: Request, res: Response) => {
   const { id } = req.params;
   if (typeof id !== "string") {
-    res.status(400).json("Invalid or missing 'id' parameter");
+    res.status(400).json({ error: "Invalid or missing 'id' parameter" });
     return;
   }
   const idNum = parseInt(id);
+
+  const existedId = await checkIdExists(idNum);
+  console.log(existedId);
+  if (!existedId) {
+    res.status(404).json({ error: "Record to delete does not exist." });
+    return;
+  }
 
   const result = await deleteOnePost(idNum);
   res.status(200).json(result);
