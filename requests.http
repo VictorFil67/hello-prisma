@@ -8,6 +8,7 @@ Content-Type: application/json
 {
      "email": "user4@cyclelove.cc ",
     "name":"User4",
+    "password": "securepassword",
     "title":"qwertyUser4",
     "bio":"fly4",
     "content":"Lorem4"

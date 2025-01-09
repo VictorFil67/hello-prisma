@@ -1,6 +1,7 @@
 export type User = {
-  name: String | undefined;
-  email: String;
+  name: string | undefined;
+  email: string;
+  password: string;
   posts: Post[];
   profile: Profile | undefined;
 };
@@ -8,13 +9,13 @@ export type User = {
 type Post = {
   createdAt: Date;
   updatedAt: Date;
-  title: String;
-  content: String;
-  published: Boolean;
-  authorId: Number;
+  title: string;
+  content: string;
+  published: boolean;
+  authorId: number;
 };
 
 type Profile = {
-  bio: String;
-  userId: Number;
+  bio: string;
+  userId: number;
 };

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import ctrlWrapper from "../decorators/ctrlWrapper";
 import { addUser, getUsers } from "../services/usersServices";
+import { register } from "../services/authServices";
 
 const usersList = async (req: Request, res: Response) => {
   const result = await getUsers();
@@ -8,18 +9,19 @@ const usersList = async (req: Request, res: Response) => {
 };
 
 const createUser = async (req: Request, res: Response) => {
-  const { email, name, title, bio, content = "" } = req.body;
-  const result = await addUser({
-    data: {
-      email,
-      name,
-      posts: {
-        create: { title, content },
-      },
-      profile: {
-        create: { bio },
-      },
+  const { email, name, password, title, bio, content = "" } = req.body;
+  const result = await register({
+    // data: {
+    email,
+    name,
+    password,
+    posts: {
+      create: { title, content },
     },
+    profile: {
+      create: { bio },
+    },
+    // },
   });
   res.status(201).json(result);
 };
