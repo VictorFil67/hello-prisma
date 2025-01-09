@@ -19,3 +19,15 @@ type Profile = {
   bio: string;
   userId: number;
 };
+
+export type UserCreateInput = {
+  name: string | undefined;
+  email: string;
+  password: string;
+  posts: {
+    create: { title: string; content: string };
+  };
+  profile: {
+    create: { bio: string };
+  };
+};

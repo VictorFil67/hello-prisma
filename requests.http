@@ -6,18 +6,18 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-     "email": "user4@cyclelove.cc ",
-    "name":"User4",
+     "email": "janedoe@example.com ",
+    "name":"Jane Doe",
     "password": "securepassword",
-    "title":"qwertyUser4",
-    "bio":"fly4",
-    "content":"Lorem4"
+    "title":"My First Post",
+    "bio":"Software developer and tech enthusiast.",
+    "content":"This is the content of my first post."
 }
 
 ###
 
 PUT http://localhost:3000/posts
-    ?id=8
+    ?id=2
     &published=true
 
 ###
