@@ -16,5 +16,5 @@ Content-Type: application/json
 ###
 
 PUT http://localhost:3000/posts
-    ?id=10
+    ?id=6
     &published=true
