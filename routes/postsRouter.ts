@@ -3,8 +3,9 @@ import postsControllers from "../controllers/postsControllers";
 
 const postsRouter = express.Router();
 
-const { updatePost } = postsControllers;
+const { updatePost, removePost } = postsControllers;
 
 postsRouter.put("/", updatePost);
+postsRouter.delete("/:id", removePost);
 
 export default postsRouter;

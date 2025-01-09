@@ -14,3 +14,9 @@ export async function deleteOnePost(id: number) {
     where: { id },
   });
 }
+
+export async function checkIdExists(id: number) {
+  return await prisma.post.findFirst({
+    where: { id },
+  });
+}
