@@ -23,11 +23,9 @@ app.use("/posts", postsRouter);
 
 app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
   const { status = 500, message = "Internal server error" } = err;
-  // console.log("message: ", message);
-  // console.log("Error message: ", message); // Проверяем что выводится
-  // console.log("Error toString: ", err.toString()); // Проверяем переопределение метода
   res.status(status).json({ message });
 });
+
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });

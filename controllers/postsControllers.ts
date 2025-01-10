@@ -6,23 +6,24 @@ import {
 } from "../services/postsServices";
 import ctrlWrapper, { Controller } from "../decorators/ctrlWrapper";
 import HttpError from "../helpers/HttpError";
-import { error } from "console";
+// import { error } from "console";
 
 const updatePost: Controller = async (req: Request, res: Response) => {
-  const { id, published } = req.query;
+  const { id = 10, published } = req.query;
 
   if (typeof id !== "string") {
     console.log(id);
-    // throw new HttpError(400, "Invalid or missing 'id' parameter");
-    res.status(400).json({ error: "Invalid or missing 'id' parameter" });
-    return;
+    throw new HttpError(400, "Invalid or missing 'id' parameter");
+    // res.status(400).json({ error: "Invalid or missing 'id' parameter" });
+    // return;
   }
   const idNum = parseInt(id);
 
   const existedId = await checkIdExists(idNum);
   if (!existedId) {
-    res.status(404).json({ error: "Record to update not found" });
-    return;
+    throw new HttpError(404, "Record to update not found");
+    // res.status(404).json({ error: "Record to update not found" });
+    // return;
   }
   const data =
     published === "true" ? { published: true } : { published: false };

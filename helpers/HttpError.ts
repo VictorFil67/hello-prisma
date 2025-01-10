@@ -18,9 +18,9 @@ class HttpError extends Error {
     this.status = status;
     this.name = "HttpError";
   }
-  toString(): string {
-    return this.message;
-  }
+  // toString(): string {
+  //   return this.message;
+  // }
 }
 
 export default HttpError;
