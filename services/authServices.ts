@@ -3,15 +3,15 @@ import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { UserCreateInput } from "../types";
 
-// import { User } from "../types";
-
 const prisma = new PrismaClient();
 
 export async function register(data: UserCreateInput) {
-  const { password, ...rest } = data;
+  // const { password, ...rest } = data;
+  const { password } = data;
   // const hashPassword = hashSync(password, 10);
   const hashPassword = await bcrypt.hash(password, 10);
   return prisma.user.create({
-    data: { ...rest, password: hashPassword },
+    // data: { ...rest, password: hashPassword },
+    data: { ...data, password: hashPassword },
   });
 }

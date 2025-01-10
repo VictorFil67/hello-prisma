@@ -4,8 +4,10 @@ import ctrlWrapper from "../decorators/ctrlWrapper";
 
 const signup = async (req: Request, res: Response) => {
   const { email, name, password, title, bio, content = "" } = req.body;
+
+  //   const user = await
+
   const result = await register({
-    // data: {
     email,
     name,
     password,
@@ -15,7 +17,6 @@ const signup = async (req: Request, res: Response) => {
     profile: {
       create: { bio },
     },
-    // },
   });
   res.status(201).json(result);
 };

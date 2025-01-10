@@ -2,16 +2,30 @@ http://localhost:3000/users
 
 ###
 
+POST http://localhost:3000/auth
+Content-Type: application/json
+
+{
+     "email": "janedoe6@example.com ",
+    "name":"Jane Doe6",
+    "password": "securepassword",
+    "title":"My First Post6",
+    "bio":"Software developer and tech enthusiast6.",
+    "content":"This is the content of my first post6."
+}
+
+###
+
 POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-     "email": "janedoe2@example.com ",
-    "name":"Jane Doe2",
+     "email": "janedoe5@example.com ",
+    "name":"Jane Doe5",
     "password": "securepassword",
-    "title":"My First Post2",
-    "bio":"Software developer and tech enthusiast2.",
-    "content":"This is the content of my first post2."
+    "title":"My First Post5",
+    "bio":"Software developer and tech enthusiast5.",
+    "content":"This is the content of my first post5."
 }
 
 ###
