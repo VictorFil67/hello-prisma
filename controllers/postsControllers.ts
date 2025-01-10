@@ -9,11 +9,11 @@ import HttpError from "../helpers/HttpError";
 // import { error } from "console";
 
 const updatePost: Controller = async (req: Request, res: Response) => {
-  const { id = 10, published } = req.query;
+  const { id, published } = req.query;
 
   if (typeof id !== "string") {
     console.log(id);
-    throw new HttpError(400, "Invalid or missing 'id' parameter");
+    throw new HttpError(415, "Invalid or missing 'id' parameter");
     // res.status(400).json({ error: "Invalid or missing 'id' parameter" });
     // return;
   }
@@ -35,7 +35,7 @@ const updatePost: Controller = async (req: Request, res: Response) => {
 const removePost = async (req: Request, res: Response) => {
   const { id } = req.params;
   if (typeof id !== "string") {
-    res.status(400).json({ error: "Invalid or missing 'id' parameter" });
+    res.status(415).json({ error: "Invalid or missing 'id' parameter" });
     return;
   }
   const idNum = parseInt(id);

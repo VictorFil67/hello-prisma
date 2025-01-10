@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
@@ -9,7 +9,7 @@ import HttpError from "./helpers/HttpError";
 // import { error } from "console";
 // import { json } from "stream/consumers";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 const app = express();
 app.use(cors());

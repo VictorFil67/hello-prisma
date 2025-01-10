@@ -6,12 +6,12 @@ POST http://localhost:3000/auth
 Content-Type: application/json
 
 {
-     "email": "janedoe6@example.com ",
-    "name":"Jane Doe6",
+     "email": "janedoe7@example.com ",
+    "name":"Jane Doe7",
     "password": "securepassword",
-    "title":"My First Post6",
-    "bio":"Software developer and tech enthusiast6.",
-    "content":"This is the content of my first post6."
+    "title":"My First Post7",
+    "bio":"Software developer and tech enthusiast7.",
+    "content":"This is the content of my first post7."
 }
 
 ###
@@ -31,7 +31,7 @@ Content-Type: application/json
 ###
 
 PUT http://localhost:3000/posts
-    ?id=20
+    ?id=10
     &published=true
 
 ###
