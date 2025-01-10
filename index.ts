@@ -1,10 +1,13 @@
 import { PrismaClient } from "@prisma/client";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import usersRouter from "./routes/usersRouter";
 import postsRouter from "./routes/postsRouter";
 import authRouter from "./routes/authRouter";
+import HttpError from "./helpers/HttpError";
+// import { error } from "console";
+// import { json } from "stream/consumers";
 
 const prisma = new PrismaClient();
 
@@ -17,6 +20,17 @@ const { PORT = 3000 } = process.env;
 app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
+
+app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
+  const { status = 500, message = "Internal server error" } = err;
+  // console.log("message: ", message);
+  // console.log("Error message: ", message); // Проверяем что выводится
+  // console.log("Error toString: ", err.toString()); // Проверяем переопределение метода
+  res.status(status).json({ message });
+});
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
+});
 
 // async function main() {
 //   // ... you will write your Prisma Client queries here
@@ -99,7 +113,3 @@ app.use("/posts", postsRouter);
 //     res.status(500).json({ error: "Error creating user" });
 //   }
 // });
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
-});

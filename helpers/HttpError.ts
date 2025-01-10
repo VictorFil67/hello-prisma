@@ -16,11 +16,10 @@ class HttpError extends Error {
   constructor(status: number, message: string = messageList[status]) {
     super(message);
     this.status = status;
-    // Specify the correct name of the error class
     this.name = "HttpError";
-    this.message;
-    // Save the call stack (optional)
-    Error.captureStackTrace(this, HttpError);
+  }
+  toString(): string {
+    return this.message;
   }
 }
 
