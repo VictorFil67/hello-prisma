@@ -21,6 +21,10 @@ app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
 
+app.use((_, res) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
 app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
   const { status = 500, message = "Internal server error" } = err;
   res.status(status).json({ message });
