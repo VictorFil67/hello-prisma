@@ -6,12 +6,12 @@ POST http://localhost:3000/auth
 Content-Type: application/json
 
 {
-     "email": "janedoe7@example.com ",
-    "name":"Jane Doe7",
+     "email": "janedoe11@example.com ",
+    "name":"Jane Doe11",
     "password": "securepassword",
-    "title":"My First Post7",
-    "bio":"Software developer and tech enthusiast7.",
-    "content":"This is the content of my first post7."
+    "title":"My First Post11",
+    "bio":"Software developer and tech enthusiast11.",
+    "content":"This is the content of my first post11."
 }
 
 ###
@@ -20,12 +20,12 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-     "email": "janedoe5@example.com ",
-    "name":"Jane Doe5",
+     "email": "janedoe9@example.com ",
+    "name":"Jane Doe9",
     "password": "securepassword",
-    "title":"My First Post5",
-    "bio":"Software developer and tech enthusiast5.",
-    "content":"This is the content of my first post5."
+    "title":"My First Post9",
+    "bio":"Software developer and tech enthusiast9.",
+    "content":"This is the content of my first post9."
 }
 
 ###

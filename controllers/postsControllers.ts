@@ -6,7 +6,6 @@ import {
 } from "../services/postsServices";
 import ctrlWrapper, { Controller } from "../decorators/ctrlWrapper";
 import HttpError from "../helpers/HttpError";
-// import { error } from "console";
 
 const updatePost: Controller = async (req: Request, res: Response) => {
   const { id, published } = req.query;

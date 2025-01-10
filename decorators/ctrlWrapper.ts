@@ -11,10 +11,8 @@ const ctrlWrapper = (ctrl: Controller): Controller => {
     try {
       await ctrl(req, res, next);
     } catch (error) {
-      console.log(error);
       next(error);
     }
-    next();
   };
   return func;
 };

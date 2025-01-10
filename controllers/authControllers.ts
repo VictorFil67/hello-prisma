@@ -11,7 +11,7 @@ const signup = async (req: Request, res: Response) => {
   if (user) {
     throw new HttpError(409, "This email is already in use");
   }
-
+  //
   const result = await register({
     email,
     name,

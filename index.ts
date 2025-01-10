@@ -21,6 +21,11 @@ app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
 
+app.use((req, res, next) => {
+  console.log(`Unmatched request: ${req.method} ${req.path}`);
+  next();
+});
+
 app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });
 });
