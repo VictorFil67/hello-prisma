@@ -1,12 +1,17 @@
+import bcrypt from "bcrypt";
 import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
 import { register } from "../services/authServices";
 import ctrlWrapper from "../decorators/ctrlWrapper";
 import { findUserByEmail } from "../services/usersServices";
 import HttpError from "../helpers/HttpError";
+import "dotenv/config";
+
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 const signup = async (req: Request, res: Response) => {
   const { email, name, password, title, bio, content = "" } = req.body;
-
+  console.log(JWT_SECRET);
   const user = await findUserByEmail(email);
   if (user) {
     throw new HttpError(409, "This email is already in use");
@@ -28,8 +33,24 @@ const signup = async (req: Request, res: Response) => {
 
 const signin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
+
+  const user = await findUserByEmail(email);
+  if (!user) {
+    throw new HttpError(401, "Email is wrong");
+  }
+  const { password: hashPassword, id } = user;
+  const compare = bcrypt.compare(password, hashPassword);
+  if (!compare) {
+    throw new HttpError(401, "Password is wrong");
+  }
+
+  const payload = { id, email };
+  console.log(JWT_SECRET);
+  const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
+  res.json(accessToken);
 };
 
 export default {
   signup: ctrlWrapper(signup),
+  signin: ctrlWrapper(signin),
 };

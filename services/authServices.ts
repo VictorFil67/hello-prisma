@@ -15,9 +15,3 @@ export async function register(data: UserCreateInput) {
     data: { ...data, password: hashPassword },
   });
 }
-
-export function findUser(email: string) {
-  return prisma.user.findFirst({
-    where: { email },
-  });
-}
