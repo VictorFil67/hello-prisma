@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { register } from "../services/authServices";
+import { register, setTokens } from "../services/authServices";
 import ctrlWrapper from "../decorators/ctrlWrapper";
 import { findUserByEmail } from "../services/usersServices";
 import HttpError from "../helpers/HttpError";
@@ -47,7 +47,14 @@ const signin = async (req: Request, res: Response) => {
   const payload = { id, email };
   console.log(JWT_SECRET);
   const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
-  res.json(accessToken);
+  //   res.json(accessToken);
+
+  const refreshToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
+  const data = { accessToken, refreshToken };
+
+  await setTokens(id, data);
+  const result = await findUserByEmail(email);
+  res.json(result);
 };
 
 export default {

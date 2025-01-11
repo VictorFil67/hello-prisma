@@ -24,10 +24,16 @@ export type UserCreateInput = {
   name: string | undefined;
   email: string;
   password: string;
+
   posts: {
     create: { title: string; content: string };
   };
   profile: {
     create: { bio: string };
   };
+};
+
+export type UserSetTokens = {
+  accessToken: string;
+  refreshToken: string;
 };

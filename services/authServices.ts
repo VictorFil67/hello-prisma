@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 // const { hashSync } = require("bcrypt");
 import bcrypt from "bcrypt";
-import { UserCreateInput } from "../types";
+import { UserCreateInput, UserSetTokens } from "../types";
 
 const prisma = new PrismaClient();
 
@@ -13,5 +13,20 @@ export async function register(data: UserCreateInput) {
   return prisma.user.create({
     // data: { ...rest, password: hashPassword },
     data: { ...data, password: hashPassword },
+  });
+}
+
+export async function setTokens(
+  id: number,
+  // accessToken: string = "",
+  // refreshToken: string = ""
+  data: UserSetTokens
+) {
+  // const { accessToken, refreshToken } = data;
+  return await prisma.user.update({
+    where: { id },
+    // accessToken,
+    // refreshToken,
+    data,
   });
 }
