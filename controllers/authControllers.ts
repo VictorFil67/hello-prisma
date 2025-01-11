@@ -26,6 +26,10 @@ const signup = async (req: Request, res: Response) => {
   res.status(201).json(result);
 };
 
+const signin = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+};
+
 export default {
   signup: ctrlWrapper(signup),
 };
