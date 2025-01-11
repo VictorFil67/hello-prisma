@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { register, setTokens } from "../services/authServices";
 import ctrlWrapper from "../decorators/ctrlWrapper";
-import { findUserByEmail } from "../services/usersServices";
+import { findUserByEmail, findUserById } from "../services/usersServices";
 import HttpError from "../helpers/HttpError";
 import "dotenv/config";
 
@@ -53,7 +53,7 @@ const signin = async (req: Request, res: Response) => {
   const data = { accessToken, refreshToken };
 
   await setTokens(id, data);
-  const result = await findUserByEmail(email);
+  const result = await findUserById(id);
   res.json(result);
 };
 

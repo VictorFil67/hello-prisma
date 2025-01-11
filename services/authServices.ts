@@ -16,14 +16,14 @@ export async function register(data: UserCreateInput) {
   });
 }
 
-export async function setTokens(
+export function setTokens(
   id: number,
   // accessToken: string = "",
   // refreshToken: string = ""
   data: UserSetTokens
 ) {
   // const { accessToken, refreshToken } = data;
-  return await prisma.user.update({
+  return prisma.user.update({
     where: { id },
     // accessToken,
     // refreshToken,

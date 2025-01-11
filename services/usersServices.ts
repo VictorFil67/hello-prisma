@@ -30,3 +30,9 @@ export async function findUserByEmail(email: string) {
     where: { email },
   });
 }
+
+export async function findUserById(id: number) {
+  return await prisma.user.findFirst({
+    where: { id },
+  });
+}
