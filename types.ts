@@ -1,3 +1,5 @@
+import { Prisma } from "@prisma/client";
+
 export type User = {
   name: string | undefined;
   email: string;
@@ -37,3 +39,5 @@ export type UserSetTokens = {
   accessToken: string;
   refreshToken: string;
 };
+
+export type UserWithoutPassword = Omit<Prisma.UserGetPayload<true>, "password">;
