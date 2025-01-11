@@ -1,6 +1,7 @@
 import { DefaultArgs } from "@prisma/client/runtime/library";
 // import { User } from "./../types";
 import { Prisma, PrismaClient } from "@prisma/client";
+import { UserWithoutPassword } from "../types";
 
 const prisma = new PrismaClient();
 
@@ -31,8 +32,16 @@ export async function findUserByEmail(email: string) {
   });
 }
 
-export async function findUserById(id: number) {
-  return await prisma.user.findFirst({
+export async function findUserById(
+  id: number
+): Promise<UserWithoutPassword | null> {
+  //Works without return type too
+  const user = await prisma.user.findFirst({
     where: { id },
   });
+  if (!user) {
+    return null;
+  }
+  const { password, ...userWithoutPassword } = user;
+  return userWithoutPassword;
 }
