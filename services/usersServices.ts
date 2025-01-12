@@ -45,3 +45,17 @@ export async function findUserById(
   const { password, ...userWithoutPassword } = user;
   return userWithoutPassword;
 }
+
+export async function findUserWithoutPassword(
+  id: number
+): Promise<UserWithoutPassword | null> {
+  //Works without return type too
+  const user = await prisma.user.findFirst({
+    where: { id },
+  });
+  if (!user) {
+    return null;
+  }
+  const { password, ...userWithoutPassword } = user;
+  return userWithoutPassword;
+}
