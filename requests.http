@@ -43,6 +43,7 @@ Content-Type: application/json
 PUT http://localhost:3000/posts
     ?id=10
     &published=true
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImVtYWlsIjoiamFuZWRvZTExQGV4YW1wbGUuY29tICIsImlhdCI6MTczNjc4MjU4NCwiZXhwIjoxNzM2Nzg2MTg0fQ.8XzOoVoiSduGXw5r6hKM1fkG5I3rPAF6B8LvX45_D1Q
 
 ###
 

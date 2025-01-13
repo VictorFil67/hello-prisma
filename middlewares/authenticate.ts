@@ -1,9 +1,11 @@
-import { jwt } from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import HttpError from "../helpers/HttpError";
 import "dotenv/config";
+import { findUserById } from "../services/usersServices";
+import { User } from "../types";
 
-const {JWT_SECRET}=process.env;
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 const authenticate = async (
   req: Request,
@@ -12,14 +14,41 @@ const authenticate = async (
 ) => {
   const authorization = req.headers.authorization;
   if (!authorization) {
+    //In try-catch(when next()): return, in other cases throw
     throw new HttpError(401, "Not authorized");
   }
 
   const [bearer, token] = authorization.split(" ");
   if (bearer !== "Bearer") {
+    //In try-catch(when next()): return, in other cases throw
     throw new HttpError(401, "Not authorized");
   }
 
-  const { id } = jwt.verfy(token,JWT_SECRET);
-  const user=
+  //   const verify = jwt.verify(token, JWT_SECRET);
+  //   console.log("token=", verify);
+  //   const id=verify.id as number
+  try {
+    const payload = jwt.verify(token, JWT_SECRET) as JwtPayload & {
+      id: number;
+      name: string | null;
+      email: string;
+    };
+    console.log("id: ", payload.id);
+    const user = await findUserById(payload.id);
+    console.log("user: ", user);
+    if (!user || (user.accessToken !== token && user.refreshToken !== token)) {
+      //In try-catch(when next()): return, in other cases throw
+      return next(new HttpError(401, "Invalid token"));
+    }
+
+    // @ts-ignore
+    req["user"] = { id: payload.id, name: payload.name, email: payload.email };
+    console.log(req);
+    next();
+  } catch (error) {
+    //In try-catch(when next()): return, in other cases throw
+    next(new HttpError(401, "Not authorized"));
+  }
 };
+
+export default authenticate;

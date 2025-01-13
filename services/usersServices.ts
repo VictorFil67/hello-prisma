@@ -1,9 +1,8 @@
 import { DefaultArgs } from "@prisma/client/runtime/library";
 // import { User } from "./../types";
-import { Prisma, PrismaClient } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { UserWithoutPassword } from "../types";
-
-const prisma = new PrismaClient();
+import { prisma } from "../helpers/prisma";
 
 export async function getUsers(): Promise<
   { name: string | null; id: number; email: string }[]
@@ -33,17 +32,13 @@ export async function findUserByEmail(email: string) {
 }
 
 export async function findUserById(
-  id: number
-): Promise<UserWithoutPassword | null> {
-  //Works without return type too
-  const user = await prisma.user.findFirst({
+  id: number,
+  includeRelations: boolean = false
+) {
+  return await prisma.user.findFirst({
     where: { id },
+    include: includeRelations ? { posts: true, profile: true } : undefined,
   });
-  if (!user) {
-    return null;
-  }
-  const { password, ...userWithoutPassword } = user;
-  return userWithoutPassword;
 }
 
 export async function findUserWithoutPassword(
