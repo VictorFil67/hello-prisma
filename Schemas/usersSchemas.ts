@@ -8,3 +8,5 @@ export const signupSchema = z.object({
   bio: z.string().optional(),
   content: z.string(),
 });
+
+export type SignupType = z.infer<typeof signupSchema>;
