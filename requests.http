@@ -20,7 +20,7 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-     "email": "janedoe11@example.com ",
+     "email": " wexemo2@evusd.com  ",
     "password": "securepassword"
 }
 
