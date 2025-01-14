@@ -5,11 +5,12 @@ import HttpError from "../helpers/HttpError";
 
 const validateBody = (schema: any) => {
   const func = (req: Request, _: any, next: NextFunction) => {
-    const { error, value } = schema.parse(req.body);
+    const { error } = schema.parse(req.body);
     if (error) {
       return next(new HttpError(400, error.message));
     }
-    req.body = value;
+    console.log("schema.parse(req.body): ", schema.parse(req.body));
+    req.body = schema.parse(req.body);
     next();
   };
   return func;
