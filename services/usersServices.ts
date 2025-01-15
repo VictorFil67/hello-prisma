@@ -66,6 +66,17 @@ export async function deleteUserFromDB(id: number) {
     where: { id },
   });
 }
+export async function deleteUsersFromDB(id: number) {
+  await prisma.post.deleteMany({
+    where: { authorId: { lte: id } },
+  });
+  await prisma.profile.deleteMany({
+    where: { userId: { lte: id } },
+  });
+  await prisma.user.deleteMany({
+    where: { id: { lte: id } },
+  });
+}
 
 // function id(
 //   a: {
