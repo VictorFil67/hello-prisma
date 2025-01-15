@@ -7,7 +7,7 @@ import { prisma } from "../helpers/prisma";
 export async function getUsers(): Promise<
   { name: string | null; id: number; email: string }[]
 > {
-  return await prisma.user.findMany();
+  return await prisma.user.findMany({ orderBy: { id: "asc" } });
 }
 
 export async function addUser(data: {
@@ -54,3 +54,30 @@ export async function findUserWithoutPassword(
   const { password, ...userWithoutPassword } = user;
   return userWithoutPassword;
 }
+
+export async function deleteUserFromDB(id: number) {
+  return await prisma.user.delete({
+    where: { id },
+  });
+}
+
+// function id(
+//   a: {
+//     id: number;
+//     email: string;
+//     password: string;
+//     name: string | null;
+//     accessToken: string | null;
+//     refreshToken: string | null;
+//   },
+//   b: {
+//     id: number;
+//     email: string;
+//     password: string;
+//     name: string | null;
+//     accessToken: string | null;
+//     refreshToken: string | null;
+//   }
+// ): number {
+//   throw new Error("Function not implemented.");
+// }
