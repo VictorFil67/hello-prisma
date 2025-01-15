@@ -45,7 +45,7 @@ const authenticate = async (
     req.user = user;
     // req["user"] = { id: payload.id, name: payload.name, email: payload.email };
     // @ts-ignore
-    console.log(user);
+    console.log("req.user: ", req);
     next();
   } catch (error) {
     //In try-catch(when next()): return, in other cases throw
