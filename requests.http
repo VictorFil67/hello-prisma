@@ -6,12 +6,12 @@ POST http://localhost:3000/auth
 Content-Type: application/json
 
 {
-     "email": "janedoe11@example.com ",
-    "name":"Jane Doe11",
+     "email": "janedoe12@example.com ",
+    "name":"Jane Doe12",
     "password": "securepassword",
-    "title":"My First Post11",
-    "bio":"Software developer and tech enthusiast11.",
-    "content":"This is the content of my first post11."
+    "title":"My First Post12",
+    "bio":"Software developer and tech enthusiast12.",
+    "content":"This is the content of my first post12."
 }
 
 ###
@@ -56,6 +56,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiO
 
 ###
 
-DELETE http://localhost:3000/users/28
+DELETE http://localhost:3000/users/30/32
 
     

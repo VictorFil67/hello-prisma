@@ -9,6 +9,6 @@ const { usersList, createUser, deleteUser, deleteUsers } = usersControllers;
 usersRouter.get("/", usersList);
 usersRouter.post("/", createUser);
 usersRouter.delete("/", authenticate, deleteUser);
-usersRouter.delete("/:id", deleteUsers);
+usersRouter.delete("/:smallId/:bigId", deleteUsers);
 
 export default usersRouter;
