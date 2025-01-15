@@ -44,13 +44,13 @@ const signin = async (req: Request, res: Response) => {
   }
   const { password: hashPassword, id } = user;
   const compare = await bcrypt.compare(password, hashPassword);
-  console.log(compare);
+  // console.log(compare);
   if (!compare) {
     throw new HttpError(401, "Password is wrong");
   }
 
   const payload = { id, email };
-  console.log(JWT_SECRET);
+  // console.log(JWT_SECRET);
   const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
   //   res.json(accessToken);
 

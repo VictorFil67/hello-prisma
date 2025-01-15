@@ -36,9 +36,9 @@ const authenticate = async (
       name: string | null;
       email: string;
     };
-    console.log("id: ", payload.id);
+    // console.log("id: ", payload.id);
     const user = await findUserById(payload.id);
-    console.log("user: ", user);
+    // console.log("user: ", user);
     if (!user || (user.accessToken !== token && user.refreshToken !== token)) {
       //In try-catch(when next()): return, in other cases throw
       return next(new HttpError(401, "Invalid token"));

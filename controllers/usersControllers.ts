@@ -39,14 +39,17 @@ const deleteUser = async (req: Request, res: Response) => {
   res.json(result);
 };
 const deleteUsers = async (req: Request, res: Response) => {
-  // @ts-ignore
   const { id } = req.params;
-  console.log("typeof id: ", typeof id);
+  // console.log("ID in controller: ", id);
+  // console.log("typeof id: ", typeof id);
+  // console.log("id: ", id);
   if (typeof id !== "string") {
     res.status(415).json({ error: "Invalid or missing 'id' parameter" });
     return;
   }
-  const idNum = parseInt(id);
+  const idNum = Number(id);
+  // console.log("idNum: ", idNum);
+  // console.log("typeof idNum: ", typeof idNum);
   const result = await deleteUsersFromDB(idNum);
   res.json(result);
 };

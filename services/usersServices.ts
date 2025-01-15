@@ -66,7 +66,15 @@ export async function deleteUserFromDB(id: number) {
     where: { id },
   });
 }
+
 export async function deleteUsersFromDB(id: number) {
+  // console.log("ID: ", id);
+  // const numericId = Number(id);
+  // console.log("typeof numericId: ", typeof numericId);
+  // console.log("ID for Prisma query:", numericId);
+  // if (isNaN(numericId)) {
+  //   throw new Error("Invalid ID value. It must be a number.");
+  // }
   await prisma.post.deleteMany({
     where: { authorId: { lte: id } },
   });
