@@ -67,7 +67,7 @@ export async function deleteUserFromDB(id: number) {
   });
 }
 
-export async function deleteUsersFromDB(id: number) {
+export async function deleteUsersFromDB(smallId: number, bigId: number) {
   // console.log("ID: ", id);
   // const numericId = Number(id);
   // console.log("typeof numericId: ", typeof numericId);
@@ -76,13 +76,15 @@ export async function deleteUsersFromDB(id: number) {
   //   throw new Error("Invalid ID value. It must be a number.");
   // }
   await prisma.post.deleteMany({
-    where: { authorId: { lte: id } },
+    where: {
+      OR: [{ authorId: { gte: smallId } }, { authorId: { lte: bigId } }],
+    },
   });
   await prisma.profile.deleteMany({
-    where: { userId: { lte: id } },
+    where: { OR: [{ userId: { gte: smallId } }, { userId: { lte: bigId } }] },
   });
   await prisma.user.deleteMany({
-    where: { id: { lte: id } },
+    where: { OR: [{ id: { gte: smallId } }, { id: { lte: bigId } }] },
   });
 }
 

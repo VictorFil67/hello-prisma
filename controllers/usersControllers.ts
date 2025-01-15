@@ -38,19 +38,20 @@ const deleteUser = async (req: Request, res: Response) => {
   const result = await deleteUserFromDB(id);
   res.json(result);
 };
-const deleteUsers = async (req: Request, res: Response) => {
-  const { id } = req.params;
+const deleteUsersFromRange = async (req: Request, res: Response) => {
+  const { smallId, bigId } = req.params;
   // console.log("ID in controller: ", id);
   // console.log("typeof id: ", typeof id);
   // console.log("id: ", id);
-  if (typeof id !== "string") {
+  if (typeof smallId !== "string" || typeof bigId !== "string") {
     res.status(415).json({ error: "Invalid or missing 'id' parameter" });
     return;
   }
-  const idNum = Number(id);
+  const smallIdNum = Number(smallId);
+  const bigIdNum = Number(bigId);
   // console.log("idNum: ", idNum);
   // console.log("typeof idNum: ", typeof idNum);
-  const result = await deleteUsersFromDB(idNum);
+  const result = await deleteUsersFromDB(smallIdNum, bigIdNum);
   res.json(result);
 };
 
@@ -58,5 +59,5 @@ export default {
   usersList: ctrlWrapper(usersList),
   createUser: ctrlWrapper(createUser),
   deleteUser: ctrlWrapper(deleteUser),
-  deleteUsers: ctrlWrapper(deleteUsers),
+  deleteUsers: ctrlWrapper(deleteUsersFromRange),
 };
