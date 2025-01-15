@@ -13,9 +13,12 @@ const authenticate = async (
   next: NextFunction
 ) => {
   const authorization = req.headers.authorization;
+  // console.log(authorization);
   if (!authorization) {
     //In try-catch(when next()): return, in other cases throw
-    throw new HttpError(401, "Not authorized");
+    // throw new HttpError(401, "Not authorized");
+    console.log("There is no authorization");
+    return;
   }
 
   const [bearer, token] = authorization.split(" ");
@@ -45,7 +48,7 @@ const authenticate = async (
     req.user = user;
     // req["user"] = { id: payload.id, name: payload.name, email: payload.email };
     // @ts-ignore
-    console.log("req.user: ", req);
+    // console.log("req.user: ", req);
     next();
   } catch (error) {
     //In try-catch(when next()): return, in other cases throw

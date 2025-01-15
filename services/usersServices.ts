@@ -56,7 +56,13 @@ export async function findUserWithoutPassword(
 }
 
 export async function deleteUserFromDB(id: number) {
-  return await prisma.user.delete({
+  await prisma.post.deleteMany({
+    where: { authorId: id },
+  });
+  await prisma.profile.deleteMany({
+    where: { userId: id },
+  });
+  await prisma.user.delete({
     where: { id },
   });
 }

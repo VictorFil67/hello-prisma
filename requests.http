@@ -20,8 +20,8 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-     "email": " wexemo2@evusd.com  ",
-    "password": "123456Ab"
+     "email": "janedoe@example.com ",
+    "password": "securepassword"
 }
 
 ###
@@ -43,9 +43,14 @@ Content-Type: application/json
 PUT http://localhost:3000/posts
     ?id=10
     &published=true
-    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImVtYWlsIjoid2V4ZW1vMkBldnVzZC5jb20iLCJpYXQiOjE3MzY5NDY4NTEsImV4cCI6MTczNjk1MDQ1MX0.p0kQ-ij1Fc4iDoQdLJ8OF9PDBoKI34wkdmXpZN0euO8
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImVtYWlsIjoid2V4ZW1vMkBldnVzZC5jb20iLCJpYXQiOjE3MzY5NTc0NzcsImV4cCI6MTczNjk2MTA3N30.h08sVDP4GRq9C7mJsNgd-mI_qzbdABLrv2QxbbarWC8
 
 ###
 
 DELETE http://localhost:3000/posts/40
+
+###
+
+DELETE http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqYW5lZG9lQGV4YW1wbGUuY29tICIsImlhdCI6MTczNjk2MDY2OSwiZXhwIjoxNzM2OTY0MjY5fQ.oAQWPzsVN28ghf5gZDVeWEZPBarOZ-M860dRKqhOdmU
     

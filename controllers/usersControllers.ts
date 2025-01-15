@@ -29,7 +29,7 @@ const createUser = async (req: Request, res: Response) => {
 const deleteUser = async (req: Request, res: Response) => {
   // @ts-ignore
   const { id } = req.user;
-  console.log(typeof id);
+  console.log("typeof id: ", typeof id);
   const result = await deleteUserFromDB(id);
   res.json(result);
 };
