@@ -15,7 +15,7 @@ const JWT_SECRET = process.env.JWT_SECRET as string;
 
 const signup = async (req: Request, res: Response) => {
   const { email, name, password, title, bio, content = "" } = req.body;
-  console.log(JWT_SECRET);
+  // console.log(JWT_SECRET);
   const user = await findUserByEmail(email);
   if (user) {
     throw new HttpError(409, "This email is already in use");
@@ -59,6 +59,7 @@ const signin = async (req: Request, res: Response) => {
 
   await setTokens(id, data);
   const result = await findUserWithoutPassword(id);
+  // @ts-ignore
   res.json(result);
 };
 

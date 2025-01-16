@@ -1,3 +1,4 @@
+import { prisma } from "./helpers/prisma";
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
@@ -5,7 +6,9 @@ import usersRouter from "./routes/usersRouter";
 import postsRouter from "./routes/postsRouter";
 import authRouter from "./routes/authRouter";
 import HttpError from "./helpers/HttpError";
+// import { PrismaClient } from '@prisma/client';
 
+// const prisma=new PrismaClient
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -30,8 +33,25 @@ app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
   res.status(status).json({ message });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
+async function startServer() {
+  try {
+    await prisma.$connect();
+    console.log("Database connection successful");
+    app.listen(PORT, () => {
+      console.log(`Server is running on port: ${PORT}`);
+    });
+  } catch (error: any) {
+    console.error("Error connecting to the database:", error.message);
+    process.exit(1);
+  }
+}
+
+startServer();
+
+process.on("SIGINT", async () => {
+  await prisma.$disconnect();
+  console.log("Connection is closed");
+  process.exit(0);
 });
 
 // async function main() {

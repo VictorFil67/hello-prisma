@@ -52,7 +52,7 @@ const deleteUsersFromRange = async (req: Request, res: Response) => {
   // console.log("idNum: ", idNum);
   // console.log("typeof idNum: ", typeof idNum);
   const result = await deleteUsersFromDB(smallIdNum, bigIdNum);
-  res.json(result);
+  res.json(`The number of deleted users is ${result["count"]}`);
 };
 
 export default {

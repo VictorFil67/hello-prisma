@@ -77,14 +77,14 @@ export async function deleteUsersFromDB(smallId: number, bigId: number) {
   // }
   await prisma.post.deleteMany({
     where: {
-      OR: [{ authorId: { gte: smallId } }, { authorId: { lte: bigId } }],
+      AND: [{ authorId: { gte: smallId } }, { authorId: { lte: bigId } }],
     },
   });
   await prisma.profile.deleteMany({
-    where: { OR: [{ userId: { gte: smallId } }, { userId: { lte: bigId } }] },
+    where: { AND: [{ userId: { gte: smallId } }, { userId: { lte: bigId } }] },
   });
-  await prisma.user.deleteMany({
-    where: { OR: [{ id: { gte: smallId } }, { id: { lte: bigId } }] },
+  return await prisma.user.deleteMany({
+    where: { AND: [{ id: { gte: smallId } }, { id: { lte: bigId } }] },
   });
 }
 
