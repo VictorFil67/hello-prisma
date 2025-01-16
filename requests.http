@@ -6,12 +6,12 @@ POST http://localhost:3000/auth
 Content-Type: application/json
 
 {
-     "name": "wexemo51 ",
-    "email": " wexemo51@evusd.com  ",
+     "name": "wexemo53 ",
+    "email": " wexemo53@evusd.com  ",
     "password":"123456Ab",
-    "title":"My First Post51",
-    "bio":"Software developer and tech enthusiast51.",
-    "content":"This is the content of my first post51."
+    "title":"My First Post53",
+    "bio":"Software developer and tech enthusiast53.",
+    "content":"This is the content of my first post53."
 }
 
 ###

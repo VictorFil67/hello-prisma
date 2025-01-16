@@ -1,5 +1,6 @@
 import { prisma } from "./helpers/prisma";
 import express, { NextFunction, Request, Response } from "express";
+import morgan from "morgan";
 import cors from "cors";
 import "dotenv/config";
 import usersRouter from "./routes/usersRouter";
@@ -10,6 +11,7 @@ import HttpError from "./helpers/HttpError";
 
 // const prisma=new PrismaClient
 const app = express();
+app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
