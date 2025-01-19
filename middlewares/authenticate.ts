@@ -47,9 +47,9 @@ const authenticate = async (
       //In try-catch(when next()): return, in other cases throw
       return next(new HttpError(401, "Invalid token"));
     }
-    const userFromToken: User = user;
+    const userFromDB: User = user;
 
-    req.user = userFromToken;
+    req.user = userFromDB;
     // req["user"] = { id: payload.id, name: payload.name, email: payload.email };
 
     console.log("req.user: ", req.user);
