@@ -45,7 +45,7 @@ const authenticate = async (
 
     req.user = userFromDB;
 
-    console.log("req.user: ", req.user);
+    // console.log("req.user: ", req.user);
     next();
   } catch (error) {
     //In try-catch(when next()): return, in other cases throw

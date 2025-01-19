@@ -37,14 +37,14 @@ export type UserCreateInput = {
 };
 
 export type UserSetTokens = {
-  accessToken: string;
-  refreshToken: string;
+  accessToken: string | null;
+  refreshToken: string | null;
 };
 
-export type AuthenticatedUser = {
-  id: number;
-  email: string;
-  name: string | null;
-};
+// export type AuthenticatedUser = {
+//   id: number;
+//   email: string;
+//   name: string | null;
+// };
 
 export type UserWithoutPassword = Omit<Prisma.UserGetPayload<true>, "password">;

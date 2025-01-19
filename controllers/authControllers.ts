@@ -77,13 +77,14 @@ const getCurrent = async (req: UserRequest, res: Response) => {
 
 const logout = async (req: UserRequest, res: Response) => {
   const user = req.user;
-  const data = { accessToken: "", refreshToken: "" };
+  const data = { accessToken: null, refreshToken: null };
   await setTokens(user!.id, data);
-  res.status(204);
+  res.status(204).json();
 };
 
 export default {
   signup: ctrlWrapper(signup),
   signin: ctrlWrapper(signin),
   getCurrent: ctrlWrapper(getCurrent),
+  logout: ctrlWrapper(logout),
 };

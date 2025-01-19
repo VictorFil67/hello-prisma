@@ -22,7 +22,10 @@ export function setTokens(
   // refreshToken: string = ""
   data: UserSetTokens
 ) {
-  // const { accessToken, refreshToken } = data;
+  // const { accessToken, refreshToken} = data;
+  // if (accessToken==='' && refreshToken==='') {
+  //   data={}
+  // }
   return prisma.user.update({
     where: { id },
     // accessToken,
