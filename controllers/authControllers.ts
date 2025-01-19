@@ -58,7 +58,7 @@ const signin = async (req: Request, res: Response) => {
   const refreshToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
   const data = { accessToken, refreshToken };
 
-  await setTokens(id, data);
+  await setTokens(id, accessToken, refreshToken);
   const result = await findUserWithoutPassword(id);
 
   res.json(result);
@@ -77,8 +77,8 @@ const getCurrent = async (req: UserRequest, res: Response) => {
 
 const logout = async (req: UserRequest, res: Response) => {
   const user = req.user;
-  const data = { accessToken: null, refreshToken: null };
-  await setTokens(user!.id, data);
+  // const data = { accessToken: null, refreshToken: null };
+  await setTokens(user!.id);
   res.status(204).json();
 };
 

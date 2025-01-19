@@ -6,9 +6,8 @@ import { UserCreateInput, UserSetTokens } from "../types";
 const prisma = new PrismaClient();
 
 export async function register(data: UserCreateInput) {
-  // const { password, ...rest } = data;
   const { password } = data;
-  // const hashPassword = hashSync(password, 10);
+
   const hashPassword = await bcrypt.hash(password, 10);
   return prisma.user.create({
     // data: { ...rest, password: hashPassword },
@@ -18,18 +17,11 @@ export async function register(data: UserCreateInput) {
 
 export function setTokens(
   id: number,
-  // accessToken: string = "",
-  // refreshToken: string = ""
-  data: UserSetTokens
+  accessToken: string | null = null,
+  refreshToken: string | null = null
 ) {
-  // const { accessToken, refreshToken} = data;
-  // if (accessToken==='' && refreshToken==='') {
-  //   data={}
-  // }
   return prisma.user.update({
     where: { id },
-    // accessToken,
-    // refreshToken,
-    data,
+    data: { accessToken, refreshToken }, //pass an object with the necessary fields
   });
 }
