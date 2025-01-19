@@ -7,7 +7,7 @@ import { User } from "../types";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-interface UserRequest extends Request {
+export interface UserRequest extends Request {
   user?: User;
 }
 
@@ -56,7 +56,7 @@ const authenticate = async (
     next();
   } catch (error) {
     //In try-catch(when next()): return, in other cases throw
-    next(new HttpError(401, "Not authorized"));
+    next(new HttpError(401, "Not authorized at all"));
   }
 };
 

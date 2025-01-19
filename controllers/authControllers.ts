@@ -10,6 +10,7 @@ import {
 } from "../services/usersServices";
 import HttpError from "../helpers/HttpError";
 import "dotenv/config";
+import { UserRequest } from "../middlewares/authenticate";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
@@ -63,14 +64,14 @@ const signin = async (req: Request, res: Response) => {
   res.json(result);
 };
 
-const getCurrent = async (req: Request, res: Response) => {
+const getCurrent = async (req: UserRequest, res: Response) => {
   // const user = req.user!;
   // console.log(user);
-  // if (req.user) {
-  //   const { id, ...userWithoutPassword } = req.user;
-  // } else {
-  //   throw new HttpError(401, "User is not authenticated");
-  // }
+  if (req.user) {
+    const { id, ...userWithoutPassword } = req.user;
+  } else {
+    throw new HttpError(401, "User is not authenticated");
+  }
   // console.log(req.user)
   // if (req.user) {
   //   const { id, email } = req.user;
@@ -78,8 +79,8 @@ const getCurrent = async (req: Request, res: Response) => {
   // } else {
   //   throw new Error("User not authenticated");
   // }
-  // const { password, ...userWithoutPassword } = req.user;
-  // res.json(userWithoutPassword);
+  const { password, ...userWithoutPassword } = req.user;
+  res.json(userWithoutPassword);
 };
 
 export default {
