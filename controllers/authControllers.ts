@@ -59,8 +59,14 @@ const signin = async (req: Request, res: Response) => {
 
   await setTokens(id, data);
   const result = await findUserWithoutPassword(id);
-  // @ts-ignore
+
   res.json(result);
+};
+
+const getCurrent = (req: Request, res: Response) => {
+  // @ts-ignore
+  const { password, ...userWithoutPassword } = req.user;
+  res.json(userWithoutPassword);
 };
 
 export default {

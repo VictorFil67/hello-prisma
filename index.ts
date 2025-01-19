@@ -7,9 +7,7 @@ import usersRouter from "./routes/usersRouter";
 import postsRouter from "./routes/postsRouter";
 import authRouter from "./routes/authRouter";
 import HttpError from "./helpers/HttpError";
-// import { PrismaClient } from '@prisma/client';
 
-// const prisma=new PrismaClient
 const app = express();
 app.use(morgan("tiny"));
 app.use(cors());
