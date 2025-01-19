@@ -17,10 +17,7 @@ const authenticate = async (
   next: NextFunction
 ) => {
   const authorization = req.headers.authorization;
-  // console.log(authorization);
   if (!authorization) {
-    //In try-catch(when next()): return, in other cases throw
-    // throw new HttpError(401, "Not authorized");
     console.log("There is no authorization");
     return;
   }
@@ -31,18 +28,15 @@ const authenticate = async (
     throw new HttpError(401, "Not authorized");
   }
 
-  //   const verify = jwt.verify(token, JWT_SECRET);
-  //   console.log("token=", verify);
-  //   const id=verify.id as number
   try {
     const payload = jwt.verify(token, JWT_SECRET) as JwtPayload & {
       id: number;
       name: string | undefined;
       email: string;
     };
-    // console.log("id: ", payload.id);
+
     const user = await findUserById(payload.id);
-    // console.log("user: ", user);
+
     if (!user || (user.accessToken !== token && user.refreshToken !== token)) {
       //In try-catch(when next()): return, in other cases throw
       return next(new HttpError(401, "Invalid token"));
@@ -50,7 +44,6 @@ const authenticate = async (
     const userFromDB: User = user;
 
     req.user = userFromDB;
-    // req["user"] = { id: payload.id, name: payload.name, email: payload.email };
 
     console.log("req.user: ", req.user);
     next();
