@@ -63,7 +63,8 @@ const signin = async (req: Request, res: Response) => {
   res.json(result);
 };
 
-const getCurrent = (req: Request, res: Response) => {
+const getCurrent = async (req: Request, res: Response) => {
+  console.log(req);
   // @ts-ignore
   const { password, ...userWithoutPassword } = req.user;
   res.json(userWithoutPassword);
@@ -72,4 +73,5 @@ const getCurrent = (req: Request, res: Response) => {
 export default {
   signup: ctrlWrapper(signup),
   signin: ctrlWrapper(signin),
+  getCurrent: ctrlWrapper(getCurrent),
 };

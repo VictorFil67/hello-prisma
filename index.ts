@@ -15,9 +15,9 @@ app.use(express.json());
 
 const { PORT = 3000 } = process.env;
 
-app.use("/auth", authRouter);
-app.use("/users", usersRouter);
-app.use("/posts", postsRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/posts", postsRouter);
 
 app.use((req, res, next) => {
   console.log(`Unmatched request: ${req.method} ${req.path}`);
