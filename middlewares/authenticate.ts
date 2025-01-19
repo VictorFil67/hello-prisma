@@ -7,8 +7,12 @@ import { User } from "../types";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
+interface UserRequest extends Request {
+  user?: User;
+}
+
 const authenticate = async (
-  req: Request,
+  req: UserRequest,
   res: Response,
   next: NextFunction
 ) => {
@@ -33,7 +37,7 @@ const authenticate = async (
   try {
     const payload = jwt.verify(token, JWT_SECRET) as JwtPayload & {
       id: number;
-      name: string | null;
+      name: string | undefined;
       email: string;
     };
     // console.log("id: ", payload.id);
@@ -43,12 +47,12 @@ const authenticate = async (
       //In try-catch(when next()): return, in other cases throw
       return next(new HttpError(401, "Invalid token"));
     }
+    const userFromToken: User = user;
 
-    // @ts-ignore
-    req.user = user;
+    req.user = userFromToken;
     // req["user"] = { id: payload.id, name: payload.name, email: payload.email };
-    // @ts-ignore
-    // console.log("req.user: ", req);
+
+    console.log("req.user: ", req.user);
     next();
   } catch (error) {
     //In try-catch(when next()): return, in other cases throw

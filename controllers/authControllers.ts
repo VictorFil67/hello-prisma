@@ -64,10 +64,22 @@ const signin = async (req: Request, res: Response) => {
 };
 
 const getCurrent = async (req: Request, res: Response) => {
-  console.log(req);
-  // @ts-ignore
-  const { password, ...userWithoutPassword } = req.user;
-  res.json(userWithoutPassword);
+  // const user = req.user!;
+  // console.log(user);
+  // if (req.user) {
+  //   const { id, ...userWithoutPassword } = req.user;
+  // } else {
+  //   throw new HttpError(401, "User is not authenticated");
+  // }
+  // console.log(req.user)
+  // if (req.user) {
+  //   const { id, email } = req.user;
+  //   console.log(`User ID: ${id}, Email: ${email}`);
+  // } else {
+  //   throw new Error("User not authenticated");
+  // }
+  // const { password, ...userWithoutPassword } = req.user;
+  // res.json(userWithoutPassword);
 };
 
 export default {

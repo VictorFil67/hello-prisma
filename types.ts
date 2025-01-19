@@ -1,12 +1,13 @@
 import { Prisma } from "@prisma/client";
 
-export type User = {
-  name: string | undefined;
+export interface User {
+  id: number;
+  name?: string | null;
   email: string;
   password: string;
-  posts: Post[];
-  profile: Profile | undefined;
-};
+  posts?: Post[];
+  profile?: Profile | undefined;
+}
 
 type Post = {
   createdAt: Date;
