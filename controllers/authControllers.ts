@@ -66,7 +66,7 @@ const signin = async (req: Request, res: Response) => {
 
 const getCurrent = async (req: UserRequest, res: Response) => {
   if (req.user) {
-    const { id, ...userWithoutPassword } = req.user;
+    const { password, ...userWithoutPassword } = req.user;
   } else {
     throw new HttpError(401, "User is not authenticated");
   }
@@ -80,6 +80,18 @@ const logout = async (req: UserRequest, res: Response) => {
   // const data = { accessToken: null, refreshToken: null };
   await setTokens(user!.id);
   res.status(204).json();
+};
+
+const getRefreshCurrent = async (req: UserRequest, res: Response) => {
+  const { id, email } = req.user!;
+
+  const payload = { id, email };
+  const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
+  const refreshToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
+
+  await setTokens(id, accessToken, refreshToken);
+
+  res.json({ accessToken, refreshToken });
 };
 
 export default {
