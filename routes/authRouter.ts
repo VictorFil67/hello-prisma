@@ -6,11 +6,13 @@ import { signinSchema, signupSchema } from "../Schemas/usersSchemas";
 
 const authRouter = express.Router();
 
-const { signup, signin, getCurrent, logout } = authControllers;
+const { signup, signin, getCurrent, logout, getRefreshCurrent } =
+  authControllers;
 
 authRouter.post("/signup", validateBody(signupSchema), signup);
 authRouter.post("/signin", validateBody(signinSchema), signin);
-authRouter.get("/getCurrent", authenticate, getCurrent);
+authRouter.get("/current", authenticate, getCurrent);
 authRouter.post("/logout", authenticate, logout);
+authRouter.get("/refreshCurrent", authenticate, getRefreshCurrent);
 
 export default authRouter;

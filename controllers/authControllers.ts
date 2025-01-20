@@ -1,3 +1,4 @@
+import { UserWithoutPassword } from "./../types";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
@@ -89,9 +90,9 @@ const getRefreshCurrent = async (req: UserRequest, res: Response) => {
   const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
   const refreshToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
 
-  await setTokens(id, accessToken, refreshToken);
-
-  res.json({ accessToken, refreshToken });
+  const result = await setTokens(id, accessToken, refreshToken);
+  const { password, ...rest } = result;
+  res.status(200).json(rest);
 };
 
 export default {
@@ -99,4 +100,5 @@ export default {
   signin: ctrlWrapper(signin),
   getCurrent: ctrlWrapper(getCurrent),
   logout: ctrlWrapper(logout),
+  getRefreshCurrent: ctrlWrapper(getRefreshCurrent),
 };
