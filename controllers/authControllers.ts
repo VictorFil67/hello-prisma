@@ -92,7 +92,7 @@ const getRefreshCurrent = async (req: UserRequest, res: Response) => {
 
   const result = await setTokens(id, accessToken, refreshToken);
   const { password, ...rest } = result;
-  res.status(200).json(rest);
+  res.json(rest);
 };
 
 export default {

@@ -21,5 +21,6 @@
 // //     };
 // //   }
 // // }
+// declare module "passport";
 
 // export {}; //Adding export {} to index.d.ts is the key thing that makes the file a module. Without it, TypeScript considers the file a global script rather than a module, which can cause type-uniting issues.

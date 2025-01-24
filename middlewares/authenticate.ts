@@ -49,7 +49,7 @@ const authenticate = async (
     next();
   } catch (error) {
     //In try-catch(when next()): return, in other cases throw
-    next(new HttpError(401, "Not authorized at all"));
+    return next(new HttpError(401, "Not authorized at all"));
   }
 };
 

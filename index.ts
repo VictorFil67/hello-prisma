@@ -1,3 +1,4 @@
+// import passport from "passport";
 import { prisma } from "./helpers/prisma";
 import express, { NextFunction, Request, Response } from "express";
 import morgan from "morgan";
@@ -19,11 +20,30 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/posts", postsRouter);
 
+// *****************************
+app.get("/", (req, res) => {
+  res.send('<a href="/auth/google">Authenticate with Google</a>');
+});
+// app.get(
+//   "auth/google",
+//   passport.authenticate("google", { scope: ["email", "profile"] })
+// );
+// app.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     successRedirect: "/protected",
+//     failureRedirect: "/auth/google/failure",
+//   })
+// );
+app.get("/protected", (req, res) => {
+  res.send("Hello!");
+});
+// *************************************
+
 app.use((req, res, next) => {
   console.log(`Unmatched request: ${req.method} ${req.path}`);
   next();
 });
-
 app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });
 });
