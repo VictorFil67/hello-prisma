@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+// import type { Prisma } from "@prisma/client";
 
 export interface User {
   id: number;
@@ -41,10 +41,11 @@ export type UserSetTokens = {
   refreshToken: string | null;
 };
 
-// export type AuthenticatedUser = {
-//   id: number;
-//   email: string;
-//   name: string | null;
-// };
-
-export type UserWithoutPassword = Omit<Prisma.UserGetPayload<true>, "password">;
+// export type UserWithoutPassword = Omit<Prisma.UserGetPayload<true>, "password">;
+export type UserWithoutPassword = {
+  id: number;
+  name?: string | null;
+  email: string;
+  posts?: Post[];
+  profile?: Profile | undefined;
+};

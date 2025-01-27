@@ -1,9 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 // const { hashSync } = require("bcrypt");
 import bcrypt from "bcrypt";
 import { UserCreateInput, UserSetTokens } from "../types";
+import { prisma } from "../helpers/prisma";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export async function register(data: UserCreateInput) {
   const { password } = data;

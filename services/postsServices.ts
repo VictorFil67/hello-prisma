@@ -1,6 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { prisma } from "../helpers/prisma";
+
+// const prisma = new PrismaClient();
 
 export async function update(id: number, data: any) {
   return await prisma.post.update({

@@ -1,4 +1,4 @@
-import { UserWithoutPassword } from "./../types";
+// import { UserWithoutPassword } from "./../types";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
